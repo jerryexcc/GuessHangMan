@@ -45,7 +45,7 @@ class ViewController: UIViewController {
             //直接猜單字
             displayWord(word: tfWord.text!, wordLength: 5)
         }else if (tfWord.text?.count)! > 1 && (tfWord.text?.count)! <= 4{
-            
+            //猜不對的字
         }else{
             //猜不到
         }
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     func displayWord(word: String, wordLength: Int){
         label_Guessed.text = "\(label_Guessed.text ?? "")\(word), "
         tfWord.text = ""
-        if guessStr == "peter"{
+        if word == "peter"{
             btnRe.isHidden = false
             btnPassGuess.isHidden = true
             chance = 0
@@ -124,7 +124,6 @@ class ViewController: UIViewController {
         }catch let error{
             print("Error:\(error)")
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
