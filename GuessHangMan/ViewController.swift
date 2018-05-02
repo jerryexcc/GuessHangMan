@@ -11,19 +11,19 @@ import AVFoundation
 
 class ViewController: UIViewController {
     var sound: AVAudioPlayer!
-    @IBOutlet weak var tfWord: UITextField!
-    let guessStr = "peter"
-    var chance = 0, score = 0
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var label_first: UILabel!
+    @IBOutlet weak var tfWord: UITextField!//輸入筐
+    let guessStr = "peter"//要猜的字
+    var chance = 0, score = 0//打錯就會加chance,到達一定分數就輸了, score則是相反功能
+    @IBOutlet weak var imageView: UIImageView!//更新畫面用的
+    @IBOutlet weak var label_first: UILabel!//單字的第一個字母...依此類推
     @IBOutlet weak var label_second: UILabel!
     @IBOutlet weak var label_third: UILabel!
     @IBOutlet weak var label_fourth: UILabel!
     @IBOutlet weak var label_fifth: UILabel!
-    @IBOutlet weak var label_YN: UILabel!
-    @IBOutlet weak var btnPassGuess: UIButton!
-    @IBOutlet weak var btnRe: UIButton!
-    @IBOutlet weak var label_Guessed: UILabel!
+    @IBOutlet weak var label_YN: UILabel!//顯示答對或是答錯的提示
+    @IBOutlet weak var btnPassGuess: UIButton!//「猜字 送出」的按鈕
+    @IBOutlet weak var btnRe: UIButton!//「重新開始」的按鈕
+    @IBOutlet weak var label_Guessed: UILabel!//已經猜過的字母的文字塊
     @IBAction func btnRestart(_ sender: Any) {
         btnRe.isHidden = true
         btnPassGuess.isHidden = false
@@ -53,7 +53,14 @@ class ViewController: UIViewController {
     func displayWord(word: String, wordLength: Int){
         label_Guessed.text = "\(label_Guessed.text ?? "")\(word), "
         tfWord.text = ""
-        if guessStr.contains(word){
+        if guessStr == "peter"{
+            btnRe.isHidden = false
+            btnPassGuess.isHidden = true
+            chance = 0
+            score = 0
+            imageView.image = #imageLiteral(resourceName: "right")
+            print("恭喜你贏了")
+        }else if guessStr.contains(word){
             label_YN.text = "O"
             label_YN.textColor = UIColor.green
             switch word{
